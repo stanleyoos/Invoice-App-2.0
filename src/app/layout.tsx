@@ -20,10 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <Container>
-          <nav>
+          <main>
             <Navbar />
-          </nav>
-          {children}
+            {children}
+          </main>
         </Container>
       </body>
     </html>
