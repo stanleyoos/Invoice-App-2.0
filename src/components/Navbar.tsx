@@ -1,13 +1,10 @@
 import Link from "next/link"
 import React from "react"
 import { TbFileInvoice } from "react-icons/tb"
-//import { usePathname } from "next/navigation"
 import classnames from "classnames"
 import { ModeToggle } from "../components/ToggleTheme"
 
 const NavBar = () => {
-  //const pathname = usePathname()
-
   const links = [
     { name: "Home", href: "/" },
     { name: "Invoices", href: "/invoices" },
@@ -15,7 +12,7 @@ const NavBar = () => {
   ]
   return (
     <nav className="flex  border-b p-5 mb-6  ">
-      <Link className="py-2 text-black flex align-middle text-2xl" href="/">
+      <Link className="py-2 flex align-middle text-2xl" href="/">
         <TbFileInvoice />
       </Link>
 
@@ -31,7 +28,9 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
-      <ModeToggle />
+      <div className="ml-auto">
+        <ModeToggle />
+      </div>
     </nav>
   )
 }
