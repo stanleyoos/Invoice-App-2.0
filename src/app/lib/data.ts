@@ -17,3 +17,18 @@ export async function fetchInvoices() {
     throw new Error("Failed to fetch invoices.")
   }
 }
+
+export async function fetchTotalAmount() {
+  noStore()
+  try {
+    const data = await sql`
+      SELECT SUM(amount) 
+      FROM invoices
+    `
+
+    return data.rows
+  } catch (error) {
+    console.error("Database Error:", error)
+    throw new Error("Failed to fetch total amount.")
+  }
+}

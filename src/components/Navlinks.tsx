@@ -13,9 +13,9 @@ const Navlinks = () => {
     { name: "Dashboard", href: "/dashboard" },
   ]
   return (
-    <ul className="flex px-6">
+    <ul className="flex px-3 lg:px-6">
       {links.map((link) => (
-        <li className="px-3 py-2" key={link.name}>
+        <li className="px-2 lg:px-4 py-2" key={link.name}>
           <Link
             className={classnames(" hover:text-zinc-500 ", {
               "font-bold": pathname === link.href,
