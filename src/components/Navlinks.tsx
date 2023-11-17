@@ -8,9 +8,9 @@ import { usePathname } from "next/navigation"
 const Navlinks = () => {
   const pathname = usePathname()
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Invoices", href: "/invoices" },
     { name: "Dashboard", href: "/dashboard" },
+    { name: "Invoices", href: "/invoices" },
+    { name: "Clients", href: "/clients" },
   ]
   return (
     <ul className="flex px-3 lg:px-6">

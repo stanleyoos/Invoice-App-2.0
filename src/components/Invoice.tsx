@@ -4,7 +4,6 @@ import { amountFormat, dateFormat } from "@/app/utils/format"
 import { IoMdInformationCircleOutline } from "react-icons/io"
 
 const Invoice = ({ invoice }: any) => {
-  console.log(invoice)
   return (
     <>
       <TableRow key={invoice.invoice}>

@@ -20,9 +20,6 @@ const InvoicesPage = async () => {
   return (
     <>
       <h1 className=" text-6xl text-center my-8 text-sky-500">Invoices</h1>
-      {/* {invoices.map((invoice) => {
-        return <Invoice key={invoice.id} invoice={invoice} />
-      })} */}
 
       <Table className="max-w-3xl mx-auto">
         <TableCaption>A list of your recent invoices.</TableCaption>
