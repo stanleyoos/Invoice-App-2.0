@@ -29,10 +29,11 @@ const InvoicesPage = async () => {
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>
-            {/* className="w-[100px]" */}
+            <TableHead className="hidden sm:block">Customer</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="hidden md:block">Date</TableHead>
+            <TableHead className="text-right ">Amount</TableHead>
+            <TableHead className="w-1"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -43,7 +44,7 @@ const InvoicesPage = async () => {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">{amountFormat(sum)}</TableCell>
+            <TableCell className="text-right ">{amountFormat(sum)}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

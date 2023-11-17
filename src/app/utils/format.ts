@@ -1,5 +1,7 @@
 const amountFormat = (amount: number): string => {
-  return `$${amount / 100}`
+  return amount < 9999 && amount > 1000
+    ? `$${amount / 100}0`
+    : `$${amount / 100}`
 }
 
 const dateFormat = (date: string): string => {
