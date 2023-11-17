@@ -1,14 +1,12 @@
-"use client"
-
 import Link from "next/link"
 import React from "react"
 import { TbFileInvoice } from "react-icons/tb"
-import { usePathname } from "next/navigation"
+//import { usePathname } from "next/navigation"
 import classnames from "classnames"
-import ToggleTheme from "./ToggleTheme"
+import { ModeToggle } from "../components/ToggleTheme"
 
 const NavBar = () => {
-  const pathname = usePathname()
+  //const pathname = usePathname()
 
   const links = [
     { name: "Home", href: "/" },
@@ -25,10 +23,7 @@ const NavBar = () => {
         {links.map((link) => (
           <li className="px-3 py-2" key={link.name}>
             <Link
-              className={classnames("hover:text-zinc-700 ", {
-                "text-zinc-900": pathname === link.href,
-                "text-zinc-500": pathname !== link.href,
-              })}
+              className={classnames("hover:text-zinc-700 ")}
               href={link.href}
             >
               {link.name}
@@ -36,7 +31,7 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
-      <ToggleTheme />
+      <ModeToggle />
     </nav>
   )
 }

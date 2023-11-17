@@ -1,6 +1,6 @@
 import React from "react"
 import { fetchInvoices } from "../lib/data"
-import Invoice from "../componentes/Invoice"
+import Invoice from "../../components/Invoice"
 
 const InvoicesPage = async () => {
   const invoices = await fetchInvoices()
