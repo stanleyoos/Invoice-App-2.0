@@ -33,7 +33,7 @@ const InvoicesPage = async () => {
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
-            <Invoice invoice={invoice} />
+            <Invoice key={invoice.id} invoice={invoice} />
           ))}
         </TableBody>
         <TableFooter>
