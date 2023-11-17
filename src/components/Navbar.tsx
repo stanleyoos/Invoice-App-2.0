@@ -2,7 +2,7 @@ import Link from "next/link"
 import React from "react"
 import { TbFileInvoice } from "react-icons/tb"
 import Navlinks from "../components/Navlinks"
-import { ModeToggle } from "../components/ToggleTheme"
+import { ModeToggle } from "@/components/ToggleTheme"
 
 const NavBar = () => {
   const links = [

@@ -1,14 +1,15 @@
 import React from "react"
+import { TableRow, TableCell } from "./ui/table"
 
 const Invoice = ({ invoice }: any) => {
   return (
     <>
-      <div className="flex">
-        <h1>{invoice?.title}</h1>
-        <p className="ml-5">{invoice?.amount}</p>
-        <p className="ml-5">{invoice?.status}</p>
-        {/* <p className="ml-5">{invoice?.date}</p> */}
-      </div>
+      <TableRow key={invoice.invoice}>
+        <TableCell className="font-medium">{invoice.title}</TableCell>
+        <TableCell>{invoice.status}</TableCell>
+        <TableCell>{String(invoice.date)}</TableCell>
+        <TableCell className="text-right">{invoice.amount}</TableCell>
+      </TableRow>
     </>
   )
 }
