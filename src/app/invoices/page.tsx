@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { amountFormat } from "../utils/format"
+import { CreateInvoice } from "../../components/ui/invoices/buttons"
 
 const InvoicesPage = async () => {
   const invoices = await fetchInvoices()
@@ -20,13 +21,16 @@ const InvoicesPage = async () => {
   return (
     <>
       <h1 className=" text-6xl text-center my-8 text-sky-500">Invoices</h1>
+      <div className="flex justify-center mb-9">
+        <CreateInvoice />
+      </div>
 
       <Table className="max-w-3xl mx-auto">
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead className="hidden sm:block">Customer</TableHead>
+            <TableHead className="">Title</TableHead>
+            <TableHead className="hidden sm:block ">Customer</TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="hidden md:block">Date</TableHead>
             <TableHead className="text-right ">Amount</TableHead>
