@@ -14,6 +14,8 @@ export interface Customer {
   // address_id: string
 }
 
+export type CustomerField = Omit<Customer, "email">
+
 export interface Address {
   id: string
   country: string

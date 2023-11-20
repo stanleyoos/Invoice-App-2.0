@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres"
 import { unstable_noStore as noStore } from "next/cache"
-import { Invoice } from "./interfaces"
+import { CustomerField, Invoice } from "./interfaces"
 
 export async function fetchInvoices() {
   noStore()
@@ -16,6 +16,25 @@ export async function fetchInvoices() {
   } catch (error) {
     console.error("Database Error:", error)
     throw new Error("Failed to fetch invoices.")
+  }
+}
+
+export async function fetchCustomers() {
+  noStore()
+
+  try {
+    const data = await sql<CustomerField>`
+    SELECT
+    id,
+    name
+  FROM customers
+  ORDER BY name ASC`
+
+    const customers = data.rows
+    return customers
+  } catch (error) {
+    console.error("Database Error:", error)
+    throw new Error("Failed to fetch all customers.")
   }
 }
 

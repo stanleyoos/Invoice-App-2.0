@@ -1,10 +1,12 @@
 import React from "react"
 import Form from "../../../components/ui/invoices/create-form"
+import { fetchCustomers } from "../../lib/data"
 
-const CreateInvoicePage = () => {
+const CreateInvoicePage = async () => {
+  const customers = await fetchCustomers()
   return (
     <main>
-      <Form />
+      <Form customers={customers} />
     </main>
   )
 }
