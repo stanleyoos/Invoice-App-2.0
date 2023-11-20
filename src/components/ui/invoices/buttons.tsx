@@ -13,3 +13,13 @@ export function CreateInvoice() {
     </Link>
   )
 }
+
+export function UpdateInvoice({
+  id,
+  children,
+}: {
+  id: string
+  children: React.ReactNode
+}) {
+  return <Link href={`/invoices/${id}/edit`}>{children}</Link>
+}

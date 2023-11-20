@@ -25,7 +25,7 @@ const InvoicesPage = async () => {
         <CreateInvoice />
       </div>
 
-      <Table className="max-w-3xl mx-auto">
+      <Table className="max-w-3xl mx-auto ">
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -45,7 +45,7 @@ const InvoicesPage = async () => {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right ">{amountFormat(sum)}</TableCell>
+            <TableCell className="text-right">{amountFormat(sum)}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

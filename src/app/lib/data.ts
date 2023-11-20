@@ -6,7 +6,7 @@ export async function fetchInvoices() {
   noStore()
   try {
     const data = await sql`
-            SELECT invoices.amount, invoices.date, customers.name , invoices.status, invoices.title
+            SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title
             FROM invoices
             JOIN customers ON invoices.customer_id = customers.id
             ORDER BY DATE DESC
