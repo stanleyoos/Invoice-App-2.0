@@ -19,6 +19,20 @@ export async function fetchInvoices() {
   }
 }
 
+export async function fetchInvoiceById(id: string) {
+  noStore()
+  try {
+    const data = await sql<Invoice>`
+      SELECT * FROM INVOICES
+      WHERE INVOICES.ID = ${id} 
+    `
+    return data.rows[0]
+  } catch (error) {
+    console.error("Database Error:", error)
+    throw new Error("Failed to fetch invoice by id.")
+  }
+}
+
 export async function fetchCustomers() {
   noStore()
 
