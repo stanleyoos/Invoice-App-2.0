@@ -7,6 +7,7 @@ import { updateInvoice } from "../../../app/lib/actions"
 import Link from "next/link"
 import { FaRegClock, FaCheckCircle } from "react-icons/fa"
 import { Button } from "../button"
+import { DeleteInvoice } from "./buttons"
 
 const EditInvoiceForm = ({
   invoice,
@@ -180,6 +181,8 @@ const EditInvoiceForm = ({
         </fieldset>
       </div>
       <div className="mt-6 flex justify-end gap-4 ">
+        <DeleteInvoice />
+
         <Link href="/invoices">
           <Button variant="secondary">Cancel</Button>
         </Link>
