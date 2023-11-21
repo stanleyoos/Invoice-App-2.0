@@ -74,3 +74,41 @@ export async function createInvoice(prevState: State, formData: FormData) {
   revalidatePath("/invoices")
   redirect("/invoices")
 }
+
+const UpdateInvoice = InvoiceSchema.omit({ id: true, date: true })
+
+export async function updateInvoice(
+  id: string,
+  prevState: State,
+  formData: FormData
+) {
+  const validatedFields = UpdateInvoice.safeParse({
+    customerId: formData.get("customerId"),
+    title: formData.get("title"),
+    amount: formData.get("amount"),
+    status: formData.get("status"),
+  })
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Update Invoice.",
+    }
+  }
+
+  const { customerId, title, amount, status } = validatedFields.data
+  const amountInCents = amount * 100
+
+  try {
+    await sql`
+      UPDATE invoices
+      SET customer_id = ${customerId}, title = ${title}, amount = ${amountInCents}, status = ${status}
+      WHERE id = ${id}
+    `
+  } catch (error) {
+    return { message: "Database Error: Failed to Update Invoice." }
+  }
+
+  revalidatePath("/invoices")
+  redirect("/invoices")
+}

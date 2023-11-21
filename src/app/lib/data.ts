@@ -26,7 +26,13 @@ export async function fetchInvoiceById(id: string) {
       SELECT * FROM INVOICES
       WHERE INVOICES.ID = ${id} 
     `
-    return data.rows[0]
+    const res = data.rows.map((invoice) => ({
+      ...invoice,
+
+      amount: invoice.amount / 100,
+    }))
+
+    return res[0]
   } catch (error) {
     console.error("Database Error:", error)
     throw new Error("Failed to fetch invoice by id.")

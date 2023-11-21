@@ -3,7 +3,7 @@
 import React from "react"
 import { CustomerField, Invoice } from "../../../app/lib/interfaces"
 import { useFormState } from "react-dom"
-import { createInvoice } from "../../../app/lib/actions"
+import { updateInvoice } from "../../../app/lib/actions"
 import Link from "next/link"
 import { FaRegClock, FaCheckCircle } from "react-icons/fa"
 import { Button } from "../button"
@@ -16,7 +16,8 @@ const EditInvoiceForm = ({
   customers: CustomerField[]
 }) => {
   const initialState = { message: "", errors: {} }
-  const [state, dispatch] = useFormState(createInvoice, initialState)
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id)
+  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState)
   return (
     <form action={dispatch} className="max-w-3xl mx-auto">
       <div className="rounded-md  p-4 md:p-6">
