@@ -1,10 +1,16 @@
 # Invoice App 2.0
+## Build with NextJS, deployed on Vercel
 
 ## Live demo:
 https://invoice-app-2-0.vercel.app/
 
+# DONE ✅
+- add authentication with Clerk\
 
-# Build with NextJS, deployed on Vercel
+# TO DO ✔️
+- add dark mode to Clerk components 
+- Client page\
+- Dashboard page
 
 # Models
 
@@ -22,4 +28,13 @@ customer_id: string
 
 id: string\
 name: string\
-email: string
+email: string\
+// address_id: string
+
+
+## Address
+
+id: string\
+country: string\
+city: string\
+street: string

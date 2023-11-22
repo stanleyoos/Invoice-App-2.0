@@ -4,6 +4,7 @@ import "./globals.css"
 import Navbar from "../components/Navbar"
 import Container from "../components/Container"
 import { ThemeProvider } from "../components/ThemeProvider"
+import { ClerkProvider } from "@clerk/nextjs"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,17 +19,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <Container>
-            <main>
-              <Navbar />
-              {children}
-            </main>
-          </Container>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className} antialiased`}>
+          <ThemeProvider attribute="class" defaultTheme="system">
+            <Container>
+              <main>
+                <Navbar />
+                {children}
+              </main>
+            </Container>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
