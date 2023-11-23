@@ -47,6 +47,7 @@ async function seedInvoices(client) {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS invoices (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      added_by VARCHAR(255) NOT NULL,
       customer_id UUID NOT NULL,
       title VARCHAR(255) NOT NULL,
       amount INT NOT NULL,
@@ -61,8 +62,8 @@ async function seedInvoices(client) {
     const insertedInvoices = await Promise.all(
       invoices.map(
         (invoice) => client.sql`
-          INSERT INTO invoices (customer_id,title, amount, status, date)
-          VALUES (${invoice.customer_id}, ${invoice.title},  ${invoice.amount}, ${invoice.status}, ${invoice.date})
+          INSERT INTO invoices (added_by, customer_id, title, amount, status, date)
+          VALUES (${invoice.addedBy}, ${invoice.customer_id}, ${invoice.title},  ${invoice.amount}, ${invoice.status}, ${invoice.date})
           ON CONFLICT (id) DO NOTHING;
         `
       )

@@ -13,9 +13,11 @@ import {
 } from "@/components/ui/table"
 import { amountFormat } from "../utils/format"
 import { CreateInvoice } from "../../components/ui/invoices/buttons"
+import { auth } from "@clerk/nextjs"
 
 const InvoicesPage = async () => {
-  const invoices = await fetchInvoices()
+  const { userId } = auth()
+  const invoices = await fetchInvoices(userId!)
   const [{ sum }] = await fetchTotalAmount()
 
   return (
@@ -24,31 +26,36 @@ const InvoicesPage = async () => {
       <div className="flex justify-center mb-9">
         <CreateInvoice />
       </div>
-
-      <Table className="max-w-3xl mx-auto ">
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="">Title</TableHead>
-            <TableHead className="hidden sm:block ">Customer</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="hidden md:block">Date</TableHead>
-            <TableHead className="text-right ">Amount</TableHead>
-            <TableHead className="w-1"></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <Invoice key={invoice.id} invoice={invoice} />
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">{amountFormat(sum)}</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+      {invoices.length == 0 ? (
+        <>
+          <h1>No invoices!</h1>
+        </>
+      ) : (
+        <Table className="max-w-3xl mx-auto ">
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="">Title</TableHead>
+              <TableHead className="hidden sm:block ">Customer</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="hidden md:block">Date</TableHead>
+              <TableHead className="text-right ">Amount</TableHead>
+              <TableHead className="w-1"></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {invoices.map((invoice) => (
+              <Invoice key={invoice.id} invoice={invoice} />
+            ))}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell colSpan={3}>Total</TableCell>
+              <TableCell className="text-right">{amountFormat(sum)}</TableCell>
+            </TableRow>
+          </TableFooter>
+        </Table>
+      )}
     </>
   )
 }

@@ -4,6 +4,7 @@ export interface Invoice {
   amount: number
   date: string
   status: "pending" | "paid"
+  addedBy: string
   customer_id: string
 }
 

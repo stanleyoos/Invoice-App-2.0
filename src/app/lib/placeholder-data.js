@@ -39,6 +39,7 @@ const invoices = [
     amount: 15795,
     status: "pending",
     date: "2022-12-06",
+    addedBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
   },
   {
     customer_id: customers[1].id,
@@ -46,6 +47,7 @@ const invoices = [
     amount: 20348,
     status: "pending",
     date: "2022-11-14",
+    addedBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
   },
   {
     customer_id: customers[2].id,
@@ -53,6 +55,7 @@ const invoices = [
     amount: 3040,
     status: "paid",
     date: "2022-10-29",
+    addedBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
   },
   {
     customer_id: customers[3].id,
@@ -60,20 +63,7 @@ const invoices = [
     amount: 44800,
     status: "paid",
     date: "2023-09-10",
-  },
-  {
-    customer_id: customers[4].id,
-    title: "Books",
-    amount: 34577,
-    status: "pending",
-    date: "2023-08-05",
-  },
-  {
-    customer_id: customers[5].id,
-    title: "Car repair",
-    amount: 54246,
-    status: "pending",
-    date: "2023-07-16",
+    addedBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
   },
 ]
 
