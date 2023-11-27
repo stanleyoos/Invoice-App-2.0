@@ -27,7 +27,7 @@ const InvoicesPage = async () => {
       {invoices.length == 0 ? (
         <>
           <h1 className=" text-2xl text-center mt-8 mb-4 text-sky-500">
-            You don't have any invoices
+            You do not have any invoices
           </h1>
           <h1 className=" text-lg text-center  ">
             Click Add invoice to create new one
