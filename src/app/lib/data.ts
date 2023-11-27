@@ -12,7 +12,7 @@ export async function fetchInvoices() {
             FROM invoices
             JOIN customers ON invoices.customer_id = customers.id
             ORDER BY DATE DESC
-            WHERE added_by = ${userId}
+            WHERE invoices.added_by = ${userId}
             `
 
     return data.rows
