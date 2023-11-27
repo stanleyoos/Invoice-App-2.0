@@ -1,5 +1,5 @@
 import React from "react"
-import { fetchInvoices, fetchTotalAmount } from "../lib/data"
+import { fetchFilteredInvoices, fetchTotalAmount } from "../lib/data"
 import Invoice from "../../components/Invoice"
 import {
   Table,
@@ -13,9 +13,17 @@ import {
 } from "../../components/ui/table"
 import { amountFormat } from "../utils/format"
 import { CreateInvoice } from "../../components/ui/invoices/buttons"
+import Search from "../../components/Search"
 
-const InvoicesPage = async () => {
-  const invoices = await fetchInvoices()
+const InvoicesPage = async ({
+  searchParams,
+}: {
+  searchParams: {
+    query?: string
+  }
+}) => {
+  const query = searchParams?.query || ""
+  const invoices = await fetchFilteredInvoices(query)
   const [{ sum }] = await fetchTotalAmount()
 
   return (
@@ -24,6 +32,7 @@ const InvoicesPage = async () => {
       <div className="flex justify-center mb-9">
         <CreateInvoice />
       </div>
+      <Search placeholder="Search for invoices..." />
       {invoices.length == 0 ? (
         <>
           <h1 className=" text-2xl text-center mt-8 mb-4 text-sky-500">

@@ -3,7 +3,7 @@ import { unstable_noStore as noStore } from "next/cache"
 import { Customer, CustomerField, Invoice } from "./interfaces"
 import { auth } from "@clerk/nextjs"
 
-export async function fetchInvoices() {
+export async function fetchFilteredInvoices(query: string) {
   noStore()
   const { userId } = auth()
   try {
@@ -11,7 +11,13 @@ export async function fetchInvoices() {
             SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title
             FROM invoices
             JOIN customers ON invoices.customer_id = customers.id
-            WHERE invoices.added_by = ${userId}
+            WHERE invoices.added_by = ${userId} AND (
+                customers.name ILIKE ${`%${query}%`} OR
+                customers.email ILIKE ${`%${query}%`} OR
+                invoices.title ILIKE ${`%${query}%`} OR
+                invoices.date::text ILIKE ${`%${query}%`} OR
+                invoices.status ILIKE ${`%${query}%`}
+            )
             ORDER BY DATE DESC
             `
 
