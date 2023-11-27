@@ -64,6 +64,7 @@ export async function fetchCustomers() {
 export async function fetchTotalAmount() {
   noStore()
   const { userId } = auth()
+  console.log(userId)
   try {
     const data = await sql`
       SELECT SUM(amount) 
