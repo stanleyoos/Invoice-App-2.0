@@ -18,7 +18,7 @@ const Navlinks = () => {
   const links = [
     { name: "Dashboard", href: "/dashboard" },
     { name: "Invoices", href: "/invoices" },
-    { name: "Clients", href: "/clients" },
+    { name: "Customers", href: "/customers" },
   ]
   return (
     <>

@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres"
 import { unstable_noStore as noStore } from "next/cache"
-import { CustomerField, Invoice } from "./interfaces"
+import { Customer, CustomerField, Invoice } from "./interfaces"
 import { auth } from "@clerk/nextjs"
 
 export async function fetchInvoices() {
@@ -46,10 +46,11 @@ export async function fetchCustomers() {
   noStore()
 
   try {
-    const data = await sql<CustomerField>`
+    const data = await sql<Customer>`
     SELECT
     id,
-    name
+    name,
+    email
   FROM customers
   ORDER BY name ASC`
 
@@ -64,7 +65,6 @@ export async function fetchCustomers() {
 export async function fetchTotalAmount() {
   noStore()
   const { userId } = auth()
-  console.log(userId)
   try {
     const data = await sql`
       SELECT SUM(amount) 
