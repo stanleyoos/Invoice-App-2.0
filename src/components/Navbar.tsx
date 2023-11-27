@@ -8,8 +8,6 @@ import { auth, UserButton } from "@clerk/nextjs"
 const NavBar = () => {
   const { userId } = auth()
 
-  console.log(userId)
-
   return (
     <nav className="flex  border-b p-5 mb-6  ">
       <Link className="py-2 flex align-middle text-2xl" href="/">
