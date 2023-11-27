@@ -1,19 +1,19 @@
 import { sql } from "@vercel/postgres"
 import { unstable_noStore as noStore } from "next/cache"
 import { CustomerField, Invoice } from "./interfaces"
-import { auth } from "@clerk/nextjs"
+//import { auth } from "@clerk/nextjs"
 
 export async function fetchInvoices() {
   noStore()
-  const { userId } = auth()
+  //const { userId } = auth()
   try {
     const data = await sql`
             SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title
             FROM invoices
             JOIN customers ON invoices.customer_id = customers.id
-            WHERE added_by = ${userId}
             ORDER BY DATE DESC
-        `
+            `
+    //WHERE added_by = ${userId}
 
     return data.rows
   } catch (error) {
@@ -63,15 +63,14 @@ export async function fetchCustomers() {
 
 export async function fetchTotalAmount() {
   noStore()
-  const { userId } = auth()
-  console.log(userId)
+  //const { userId } = auth()
+  //console.log(userId)
   try {
     const data = await sql`
       SELECT SUM(amount) 
       FROM invoices
-      WHERE invoices.added_by = ${userId}
     `
-
+    // WHERE invoices.added_by = ${userId}
     return data.rows
   } catch (error) {
     console.error("Database Error:", error)
