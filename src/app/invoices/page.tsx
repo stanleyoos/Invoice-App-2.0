@@ -10,7 +10,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "../../components/ui/table"
 import { amountFormat } from "../utils/format"
 import { CreateInvoice } from "../../components/ui/invoices/buttons"
 import { auth } from "@clerk/nextjs"
@@ -28,7 +28,7 @@ const InvoicesPage = async () => {
       </div>
       {invoices.length == 0 ? (
         <>
-          <h1>No invoices!</h1>
+          <h1 className=" text-4xl text-center my-8 text-sky-500">Invoices</h1>
         </>
       ) : (
         <Table className="max-w-3xl mx-auto ">

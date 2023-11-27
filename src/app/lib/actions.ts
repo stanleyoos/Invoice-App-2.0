@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { z } from "zod"
 import { sql } from "@vercel/postgres"
+import { auth } from "@clerk/nextjs"
 
 const InvoiceSchema = z.object({
   id: z.string(),
@@ -37,6 +38,8 @@ const CreateInvoice = InvoiceSchema.omit({ id: true, date: true })
 export async function createInvoice(prevState: State, formData: FormData) {
   // Validate form using Zod
 
+  const { userId } = auth()
+
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get("customerId"),
     amount: formData.get("amount"),
@@ -60,8 +63,8 @@ export async function createInvoice(prevState: State, formData: FormData) {
   // Insert data into the database
   try {
     await sql`
-    INSERT INTO invoices (customer_id, title, amount, status, date)
-    VALUES (${customerId}, ${title}, ${amountInCents}, ${status}, ${date})
+    INSERT INTO invoices (customer_id, added_by, title, amount, status, date)
+    VALUES (${customerId}, ${userId}, ${title}, ${amountInCents}, ${status}, ${date})
     `
   } catch (error) {
     // If a database error occurs, return a more specific error.
