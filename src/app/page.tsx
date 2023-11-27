@@ -5,9 +5,10 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"
 const HomePage = () => {
   return (
     <div>
-      <h1 className=" text-6xl text-sky-500 text-center my-28">
-        Welcome to Invoice App
+      <h1 className=" mt-20 my-5 text-6xl text-sky-500 text-center ">
+        Welcome to
       </h1>
+      <h1 className=" my-6 text-6xl text-sky-500 text-center ">Invoice App</h1>
       <p className="text-center my-28 text-xl">
         This app will help you to manage your invoices and clients
       </p>

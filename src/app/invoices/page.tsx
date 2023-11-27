@@ -13,11 +13,9 @@ import {
 } from "../../components/ui/table"
 import { amountFormat } from "../utils/format"
 import { CreateInvoice } from "../../components/ui/invoices/buttons"
-import { auth } from "@clerk/nextjs"
 
 const InvoicesPage = async () => {
-  const { userId } = auth()
-  const invoices = await fetchInvoices(userId!)
+  const invoices = await fetchInvoices()
   const [{ sum }] = await fetchTotalAmount()
 
   return (
@@ -28,7 +26,12 @@ const InvoicesPage = async () => {
       </div>
       {invoices.length == 0 ? (
         <>
-          <h1 className=" text-4xl text-center my-8 text-sky-500">Invoices</h1>
+          <h1 className=" text-2xl text-center mt-8 mb-4 text-sky-500">
+            You don't have any invoices
+          </h1>
+          <h1 className=" text-lg text-center  ">
+            Click Add invoice to create new one
+          </h1>
         </>
       ) : (
         <Table className="max-w-3xl mx-auto ">
