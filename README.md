@@ -5,12 +5,15 @@
 https://invoice-app-2-0.vercel.app/
 
 # DONE ✅
-- add authentication with Clerk\
+- add authentication with Clerk
+- Client page
 
 # TO DO ✔️
-- add dark mode to Clerk components 
-- Client page\
-- Dashboard page
+- update single Client page 
+- Create add client form
+- add client update and delete function
+- create more tests!
+- Dashboard page (numbers of all clients, all invoices, ...)
 
 # Models
 
@@ -33,11 +36,10 @@ email: string\
 
 
 ## Address
+will be created soon
 
 id: string\
 country: string\
 city: string\
 street: string
 
-
-// COMMIT FOR REDEPLOYMENT
