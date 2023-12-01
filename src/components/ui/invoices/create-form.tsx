@@ -3,7 +3,7 @@
 import React from "react"
 import { CustomerField } from "../../../app/lib/interfaces"
 import { useFormState } from "react-dom"
-import { createInvoice } from "../../../app/lib/actions"
+import { createInvoice } from "../../../app/lib/actions/invoiceActions"
 import Link from "next/link"
 import { FaRegClock, FaCheckCircle } from "react-icons/fa"
 import { Button } from "../button"

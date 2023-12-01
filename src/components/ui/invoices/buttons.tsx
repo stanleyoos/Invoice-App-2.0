@@ -1,20 +1,8 @@
 import React from "react"
 import Link from "next/link"
 import { Button } from "../../../components/ui/button"
-import { IoTrashBin, IoAdd } from "react-icons/io5"
-
-import { deleteInvoice } from "@/app/lib/actions"
-
-export function CreateInvoice() {
-  return (
-    <Link href="/invoices/create">
-      <Button variant="secondary">
-        <IoAdd />
-        Add invoice
-      </Button>
-    </Link>
-  )
-}
+import { IoTrashBin } from "react-icons/io5"
+import { deleteInvoice } from "@/app/lib/actions/invoiceActions"
 
 export function UpdateInvoice({
   id,

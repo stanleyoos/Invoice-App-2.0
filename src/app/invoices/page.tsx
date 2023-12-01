@@ -11,8 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table"
+import CreateInvoiceButton from "../../components/ui/buttons/createButton"
 import { amountFormat } from "../utils/format"
-import { CreateInvoice } from "../../components/ui/invoices/buttons"
 import Search from "../../components/Search"
 
 const InvoicesPage = async ({
@@ -30,7 +30,7 @@ const InvoicesPage = async ({
     <>
       <h1 className=" text-6xl text-center my-8 text-sky-500">Invoices</h1>
       <div className="flex justify-center mb-9">
-        <CreateInvoice />
+        <CreateInvoiceButton href="/invoices/create" name="Add invoice" />
       </div>
       <Search placeholder="Search for invoices..." />
       {invoices.length == 0 ? (
