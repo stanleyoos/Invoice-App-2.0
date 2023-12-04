@@ -4,7 +4,7 @@ import Customer from "../../components/Customer"
 import Link from "next/link"
 import CreateCustomerButton from "../../components/ui/buttons/createButton"
 
-const ClientsPage = async () => {
+const CustomersPage = async () => {
   const customers = await fetchCustomers()
 
   return (
@@ -13,15 +13,26 @@ const ClientsPage = async () => {
       <div className="flex justify-center mb-9">
         <CreateCustomerButton href="/customers/create" name="Add customer" />
       </div>
-      <div className="flex flex-wrap gap-5 justify-center ">
-        {customers.map((customer) => (
-          <Link key={customer.id} href={`/customers/${customer.id}/edit`}>
-            <Customer customer={customer} />
-          </Link>
-        ))}
-      </div>
+      {customers.length == 0 ? (
+        <>
+          <h1 className=" text-2xl text-center mt-8 mb-4 text-sky-500">
+            You do not have any customers
+          </h1>
+          <h1 className=" text-lg text-center  ">
+            Click Add customer to create new one
+          </h1>
+        </>
+      ) : (
+        <div className="flex flex-wrap gap-5 justify-center ">
+          {customers.map((customer) => (
+            <Link key={customer.id} href={`/customers/${customer.id}`}>
+              <Customer customer={customer} />
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   )
 }
 
-export default ClientsPage
+export default CustomersPage

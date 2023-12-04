@@ -11,7 +11,7 @@ export function UpdateInvoice({
   id: string
   children: React.ReactNode
 }) {
-  return <Link href={`/invoices/${id}/edit`}>{children}</Link>
+  return <Link href={`/invoices/${id}`}>{children}</Link>
 }
 
 export function DeleteInvoice({ id }: { id: string }) {

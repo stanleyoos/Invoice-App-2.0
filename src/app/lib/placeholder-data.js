@@ -1,34 +1,27 @@
 const customers = [
   {
     id: "3958dc9e-712f-4377-85e9-fec4b6a6442a",
+    createdBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
     name: "Delba de Oliveira",
     email: "delba@oliveira.com",
   },
   {
     id: "3958dc9e-742f-4377-85e9-fec4b6a6442a",
+    createdBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
     name: "Lee Robinson",
     email: "lee@robinson.com",
-    image_url: "/customers/lee-robinson.png",
   },
   {
     id: "3958dc9e-737f-4377-85e9-fec4b6a6442a",
+    createdBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
     name: "Hector Simpson",
     email: "hector@simpson.com",
   },
   {
     id: "50ca3e18-62cd-11ee-8c99-0242ac120002",
+    createdBy: "user_2YXNvmqwaDRHloVNzoWt3d2scFf",
     name: "Steven Tey",
     email: "steven@tey.com",
-  },
-  {
-    id: "3958dc9e-787f-4377-85e9-fec4b6a6442a",
-    name: "Steph Dietz",
-    email: "steph@dietz.com",
-  },
-  {
-    id: "76d65c26-f784-44a2-ac19-586678f7c2f2",
-    name: "Michael Novotny",
-    email: "michael@novotny.com",
   },
 ]
 

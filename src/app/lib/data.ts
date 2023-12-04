@@ -65,7 +65,7 @@ export async function fetchCustomerById(id: string) {
 
 export async function fetchCustomers() {
   noStore()
-
+  const { userId } = auth()
   try {
     const data = await sql<Customer>`
     SELECT
@@ -73,6 +73,7 @@ export async function fetchCustomers() {
     name,
     email
   FROM customers
+  WHERE CUSTOMERS.CREATED_BY = ${userId}
   ORDER BY name ASC`
 
     const customers = data.rows

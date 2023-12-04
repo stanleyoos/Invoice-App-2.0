@@ -27,7 +27,7 @@ const CreateCustomer = CustomerSchema.omit({ id: true })
 export async function createCustomer(prevState: State, formData: FormData) {
   // Validate form using Zod
 
-  //const { userId } = auth()
+  const { userId } = auth()
 
   const validatedFields = CreateCustomer.safeParse({
     name: formData.get("name"),
@@ -49,8 +49,8 @@ export async function createCustomer(prevState: State, formData: FormData) {
   // Insert data into the database
   try {
     await sql`
-    INSERT INTO customers (name, email)
-    VALUES (${name}, ${email})
+    INSERT INTO customers (name, created_by, email)
+    VALUES (${name}, ${userId}, ${email})
     `
   } catch (error) {
     // If a database error occurs, return a more specific error.

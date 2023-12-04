@@ -10,6 +10,7 @@ export interface Invoice {
 
 export interface Customer {
   id: string
+  createdBy: string
   name: string
   email: string
   // address_id: string
