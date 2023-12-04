@@ -3,7 +3,7 @@ import { TableRow, TableCell } from "./ui/table"
 import { amountFormat, dateFormat } from "@/app/utils/format"
 import { IoMdInformationCircleOutline } from "react-icons/io"
 import InvoiceStatus from "../components/ui/invoices/status"
-import { UpdateInvoice } from "./ui/invoices/buttons"
+import { ViewInvoice } from "./ui/invoices/buttons"
 
 const Invoice = ({ invoice }: any) => {
   //console.log(invoice)
@@ -21,9 +21,9 @@ const Invoice = ({ invoice }: any) => {
         {amountFormat(invoice.amount)}
       </TableCell>
       <TableCell className="text-right w-1">
-        <UpdateInvoice id={invoice.id}>
+        <ViewInvoice id={invoice.id}>
           <IoMdInformationCircleOutline className="text-xl ml-auto" />
-        </UpdateInvoice>
+        </ViewInvoice>
       </TableCell>
     </TableRow>
   )

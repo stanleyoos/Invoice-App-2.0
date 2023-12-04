@@ -20,7 +20,7 @@ const InvoiceEditPage = async ({ params }: { params: { id: string } }) => {
   return (
     <>
       <div className="flex justify-between">
-        <Link href={"/invoices"} className="text-5xl flex items-center">
+        <Link href={`/invoices/${id}`} className="text-5xl flex items-center">
           <IoMdArrowRoundBack />
         </Link>
         <h1 className=" text-3xl md:text-6xl text-center my-8 text-sky-500">

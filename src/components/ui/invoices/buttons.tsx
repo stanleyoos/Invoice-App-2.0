@@ -4,7 +4,7 @@ import { Button } from "../../../components/ui/button"
 import { IoTrashBin } from "react-icons/io5"
 import { deleteInvoice } from "@/app/lib/actions/invoiceActions"
 
-export function UpdateInvoice({
+export function ViewInvoice({
   id,
   children,
 }: {
