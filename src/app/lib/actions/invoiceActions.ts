@@ -112,8 +112,8 @@ export async function updateInvoice(
     return { message: "Database Error: Failed to Update Invoice." }
   }
 
-  revalidatePath("/invoices")
-  redirect("/invoices")
+  revalidatePath(`/invoices/${id}`)
+  redirect(`/invoices/${id}`)
 }
 
 export async function deleteInvoice(id: string) {
