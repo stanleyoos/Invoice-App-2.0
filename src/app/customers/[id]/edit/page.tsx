@@ -1,13 +1,15 @@
 import React from "react"
 import { fetchCustomerById } from "@/app/lib/data"
+import { EditPageTopNav } from "@/components/ui/TopPartNav"
+import UpdateCustomerForm from "../../../../components/ui/customers/edit-form"
 
 const CustomerEditPage = async ({ params }: { params: { id: string } }) => {
   const id = params.id
   const customer = await fetchCustomerById(id)
   return (
     <>
-      <h1 className=" text-xl text-center my-8 ">Name: {customer.name}</h1>
-      <h1 className=" text-xl text-center my-8 ">Email: {customer.email}</h1>
+      <EditPageTopNav backHref={`/customers/${id}`} title="Update Customer" />
+      <UpdateCustomerForm customer={customer} />
     </>
   )
 }

@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { dateFormat } from "@/app/utils/format"
-import TopPartNav from "../../../components/ui/TopPartNav"
+import { TopPartNav } from "../../../components/ui/TopPartNav"
 
 const InvoicePage = async ({ params }: { params: { id: string } }) => {
   const invoice = await fetchInvoiceById(params.id)

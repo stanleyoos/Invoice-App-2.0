@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "../../../components/ui/card"
 import { fetchCustomerById } from "@/app/lib/data"
-import TopPartNav from "@/components/ui/TopPartNav"
+import { TopPartNav } from "@/components/ui/TopPartNav"
 
 const CustomerPage = async ({ params }: { params: { id: string } }) => {
   const customer = await fetchCustomerById(params.id)

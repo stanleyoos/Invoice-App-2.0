@@ -15,3 +15,11 @@ const createButton = ({ href, name }: { href: string; name: string }) => {
 }
 
 export default createButton
+
+export const deleteButton = () => {
+  return (
+    <>
+      <button>Delete</button>
+    </>
+  )
+}

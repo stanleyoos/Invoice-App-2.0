@@ -1,11 +1,9 @@
 "use client"
 
 import React from "react"
-import { CustomerField } from "../../../app/lib/interfaces"
 import { useFormState } from "react-dom"
 import { createCustomer } from "../../../app/lib/actions/customerActions"
 import Link from "next/link"
-import { FaRegClock, FaCheckCircle } from "react-icons/fa"
 import { Button } from "../button"
 
 const CreateCustomerForm = () => {
