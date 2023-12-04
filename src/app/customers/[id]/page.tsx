@@ -5,21 +5,27 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card"
+import { fetchCustomerById } from "@/app/lib/data"
+import TopPartNav from "@/components/ui/TopPartNav"
 
-const CustomerPage = () => {
+const CustomerPage = async ({ params }: { params: { id: string } }) => {
+  const customer = await fetchCustomerById(params.id)
+
   return (
     <>
-      <h1 className=" text-3xl md:text-6xl text-center my-8 text-sky-500">
-        Name
-      </h1>
+      <TopPartNav
+        backHref={`/customers`}
+        editHref={`/customers/${customer.id}/edit`}
+        title={customer.name}
+      />
       <Card className="w-80 mx-auto">
         <CardHeader>
-          <CardTitle className="mb-3">Email</CardTitle>
-          <CardDescription>Edit - link to /id/edit</CardDescription>
+          <CardDescription>mail</CardDescription>
+          <CardTitle className="mb-3">{customer.email}</CardTitle>
         </CardHeader>
       </Card>
 
-      <h1 className=" text-3xl md:text-6xl text-center my-8 text-sky-500">
+      <h1 className=" text-3xl  text-center my-8 ">
         Invoice List by customer id
       </h1>
     </>

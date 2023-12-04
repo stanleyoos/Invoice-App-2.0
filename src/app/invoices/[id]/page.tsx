@@ -1,8 +1,8 @@
 import React from "react"
 import { fetchCustomerById, fetchInvoiceById } from "@/app/lib/data"
 import Link from "next/link"
-import { IoMdArrowRoundBack, IoMdArrowForward } from "react-icons/io"
-import { Button } from "@/components/ui/button"
+import { IoMdArrowForward } from "react-icons/io"
+
 import {
   Card,
   CardDescription,
@@ -10,33 +10,25 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { dateFormat } from "@/app/utils/format"
+import TopPartNav from "../../../components/ui/TopPartNav"
 
 const InvoicePage = async ({ params }: { params: { id: string } }) => {
   const invoice = await fetchInvoiceById(params.id)
   const customer = await fetchCustomerById(invoice.customer_id)
 
-  console.log(customer)
-
-  console.log(invoice)
   return (
     <>
-      <div className="flex justify-between">
-        <Link href={`/invoices`} className="text-5xl flex items-center">
-          <IoMdArrowRoundBack />
-        </Link>
-        <h1 className=" text-4xl sm:text-6xl text-center my-8 text-sky-500">
-          {invoice.title}
-        </h1>
-        <Link className="my-auto" href={`/invoices/${invoice.id}/edit`}>
-          <Button variant={"secondary"}>Edit</Button>
-        </Link>
-      </div>
+      <TopPartNav
+        backHref={`/invoices`}
+        editHref={`/invoices/${invoice.id}/edit`}
+        title={invoice.title}
+      />
 
       <div className="flex flex-col items-center gap-5">
         <Link href={`/customers/${invoice.customer_id}`}>
           <Card className="w-80">
             <CardHeader>
-              <CardDescription>created for</CardDescription>
+              <CardDescription>invoice for</CardDescription>
               <CardTitle className="flex justify-between">
                 {customer.name}
                 <IoMdArrowForward />
