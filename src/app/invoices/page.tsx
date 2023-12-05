@@ -1,5 +1,5 @@
 import React from "react"
-import { fetchFilteredInvoices, fetchTotalAmount } from "../lib/data"
+import { fetchFilteredInvoices } from "../lib/data"
 import InvoicesTable from '../../components/ui/invoices/invoicesTable'
 import CreateInvoiceButton from "../../components/ui/buttons/createButton"
 import Search from "../../components/Search"
@@ -13,9 +13,7 @@ const InvoicesPage = async ({
 }) => {
   const query = searchParams?.query || ""
   const invoices = await fetchFilteredInvoices(query)
-  const [{ sum }] = await fetchTotalAmount()
-
-  console.log(invoices)
+  const sum  = invoices.reduce((acc, curr) => acc += curr.amount , 0)
 
   return (
     <>
