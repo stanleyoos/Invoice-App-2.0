@@ -27,6 +27,7 @@ export default function RootLayout({
               <main>
                 <Navbar />
                 {children}
+                <div className="my-12"></div>
               </main>
             </Container>
           </ThemeProvider>

@@ -1,18 +1,7 @@
 import React from "react"
 import { fetchFilteredInvoices, fetchTotalAmount } from "../lib/data"
-import Invoice from "../../components/Invoice"
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../components/ui/table"
+import InvoicesTable from '../../components/ui/invoices/invoicesTable'
 import CreateInvoiceButton from "../../components/ui/buttons/createButton"
-import { amountFormat } from "../utils/format"
 import Search from "../../components/Search"
 
 const InvoicesPage = async ({
@@ -25,6 +14,8 @@ const InvoicesPage = async ({
   const query = searchParams?.query || ""
   const invoices = await fetchFilteredInvoices(query)
   const [{ sum }] = await fetchTotalAmount()
+
+  console.log(invoices)
 
   return (
     <>
@@ -43,30 +34,7 @@ const InvoicesPage = async ({
           </h1>
         </>
       ) : (
-        <Table className="max-w-3xl mx-auto ">
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="">Title</TableHead>
-              <TableHead className="hidden sm:block ">Customer</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="hidden md:block">Date</TableHead>
-              <TableHead className="text-right ">Amount</TableHead>
-              <TableHead className="w-1"></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <Invoice key={invoice.id} invoice={invoice} />
-            ))}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">{amountFormat(sum)}</TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
+        <InvoicesTable sum={sum} invoices={invoices} />
       )}
     </>
   )

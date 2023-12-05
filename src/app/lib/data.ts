@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres"
 import { unstable_noStore as noStore } from "next/cache"
-import { Customer, CustomerField, Invoice } from "./interfaces"
+import { Customer, Invoice } from "./interfaces"
 import { auth } from "@clerk/nextjs"
 
 export async function fetchFilteredInvoices(query: string) {
@@ -42,6 +42,23 @@ export async function fetchInvoiceById(id: string) {
     }))
 
     return res[0]
+  } catch (error) {
+    console.error("Database Error:", error)
+    throw new Error("Failed to fetch invoice by id.")
+  }
+}
+
+export async function fetchInvoicesByCustomer(id: string) {
+  noStore()
+  try {
+    const data = await sql<Invoice>`
+      SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title 
+      FROM INVOICES
+      JOIN customers ON invoices.customer_id = customers.id
+      WHERE INVOICES.customer_id = ${id} 
+    `
+
+    return data.rows
   } catch (error) {
     console.error("Database Error:", error)
     throw new Error("Failed to fetch invoice by id.")
