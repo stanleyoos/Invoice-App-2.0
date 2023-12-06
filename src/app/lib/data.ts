@@ -1,13 +1,14 @@
-import { sql } from "@vercel/postgres"
-import { unstable_noStore as noStore } from "next/cache"
-import { Customer, Invoice } from "./interfaces"
-import { auth } from "@clerk/nextjs"
+import { sql } from "@vercel/postgres";
+import { unstable_noStore as noStore } from "next/cache";
+import { Customer, Invoice } from "./interfaces";
+import { auth } from "@clerk/nextjs";
 
+// : Promise<Invoice[]>
 export async function fetchFilteredInvoices(query: string) {
-  noStore()
-  const { userId } = auth()
+  noStore();
+  const { userId } = auth();
   try {
-    const data = await sql`
+    const data = await sql<Invoice>`
             SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title
             FROM invoices
             JOIN customers ON invoices.customer_id = customers.id
@@ -19,70 +20,70 @@ export async function fetchFilteredInvoices(query: string) {
                 invoices.status ILIKE ${`%${query}%`}
             )
             ORDER BY DATE DESC
-            `
-
-    return data.rows
+            `;
+    console.log(data.rows);
+    return data.rows;
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch invoices.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
   }
 }
 
 export async function fetchInvoiceById(id: string) {
-  noStore()
+  noStore();
   try {
     const data = await sql<Invoice>`
       SELECT * FROM INVOICES
       WHERE INVOICES.ID = ${id} 
-    `
+    `;
     const res = data.rows.map((invoice) => ({
       ...invoice,
 
       amount: invoice.amount / 100,
-    }))
+    }));
 
-    return res[0]
+    return res[0];
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch invoice by id.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoice by id.");
   }
 }
 
 export async function fetchInvoicesByCustomer(id: string) {
-  noStore()
+  noStore();
   try {
     const data = await sql<Invoice>`
       SELECT invoices.id, invoices.amount, invoices.date, customers.name , invoices.status, invoices.title 
       FROM INVOICES
       JOIN customers ON invoices.customer_id = customers.id
       WHERE INVOICES.customer_id = ${id} 
-    `
+    `;
 
-    return data.rows
+    return data.rows;
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch invoice by id.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoice by id.");
   }
 }
 
 export async function fetchCustomerById(id: string) {
-  noStore()
+  noStore();
   try {
     const data = await sql<Customer>`
       SELECT * FROM CUSTOMERS
       WHERE CUSTOMERS.ID = ${id} 
-    `
+    `;
 
-    return data.rows[0]
+    return data.rows[0];
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch invoice by id.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoice by id.");
   }
 }
 
 export async function fetchCustomers() {
-  noStore()
-  const { userId } = auth()
+  noStore();
+  const { userId } = auth();
   try {
     const data = await sql<Customer>`
     SELECT
@@ -91,28 +92,28 @@ export async function fetchCustomers() {
     email
   FROM customers
   WHERE CUSTOMERS.CREATED_BY = ${userId}
-  ORDER BY name ASC`
+  ORDER BY name ASC`;
 
-    const customers = data.rows
-    return customers
+    const customers = data.rows;
+    return customers;
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch all customers.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch all customers.");
   }
 }
 
 export async function fetchTotalAmount() {
-  noStore()
-  const { userId } = auth()
+  noStore();
+  const { userId } = auth();
   try {
     const data = await sql`
       SELECT SUM(amount) 
       FROM invoices
       WHERE invoices.added_by = ${userId}
-    `
-    return data.rows
+    `;
+    return data.rows;
   } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch total amount.")
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total amount.");
   }
 }
