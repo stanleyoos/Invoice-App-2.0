@@ -5,6 +5,7 @@ export interface Invoice {
   date: string;
   status: "pending" | "paid";
   title: string;
+  customer_id: string;
 }
 
 export interface Customer {

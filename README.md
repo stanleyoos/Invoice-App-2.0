@@ -7,12 +7,12 @@ https://invoice-app-2-0.vercel.app/
 # DONE ✅
 - add authentication with Clerk
 - Client page
+- Add, Update Client
+- Started with Dashboard page
 
 # TO DO ✔️
-- update single Client page 
-- Create add client form
-- add client update and delete function
-- create more tests!
+- Client delete function
+- Create more tests!
 - Dashboard page (numbers of all clients, all invoices, ...)
 
 # Models
@@ -24,7 +24,8 @@ title: string\
 amount: number\
 date: string\
 status: "pending" | "paid"\
-customer_id: string
+customer_id: string\
+addedBy: Client string
 
 
 ## Client
@@ -32,6 +33,7 @@ customer_id: string
 id: string\
 name: string\
 email: string\
+createdBy: string\
 // address_id: string
 
 
