@@ -8,9 +8,10 @@ https://invoice-app-2-0.vercel.app/
 - add authentication with Clerk
 - Client page
 - Add, Update Client
-- Started with Dashboard page
+- Dashboard page
 
 # TO DO ✔️
+- Create charts in Dashboard
 - Client delete function
 - Create more tests!
 - Dashboard page (numbers of all clients, all invoices, ...)
