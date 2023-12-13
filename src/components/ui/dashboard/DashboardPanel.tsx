@@ -6,6 +6,7 @@ import CustomerAmount from "./CustomerAmount";
 import { auth } from "@clerk/nextjs";
 import InvoiceAmount from "./InvoiceAmount";
 import { fetchCustomers } from "@/app/lib/data";
+import Chart from "./Chart";
 
 const DashboardPanel = async ({ invoices }: { invoices: Invoice[] }) => {
   const { sessionClaims }: any = auth();
@@ -24,12 +25,12 @@ const DashboardPanel = async ({ invoices }: { invoices: Invoice[] }) => {
         <CustomerAmount amount={customers.length} />
       </div>
       <div className={styles.gridItem}>
-        <h1>Place for chart!</h1>
+        <Chart invoices={invoices} />
       </div>
-      <div className={styles.gridItem}>05</div>
-      <div className={styles.gridItem}>06</div>
-      <div className={styles.gridItem}>07</div>
-      <div className={styles.gridItem}>08</div>
+      <div className={styles.gridItem}></div>
+      <div className={styles.gridItem}></div>
+      <div className={styles.gridItem}></div>
+      <div className={styles.gridItem}></div>
     </div>
   );
 };

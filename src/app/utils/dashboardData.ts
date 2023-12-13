@@ -10,9 +10,7 @@ export const calcTotalAmout = (invoices: Invoice[]): string => {
 export const calcInvoices = (
   invoices: Invoice[],
   condition: string
-): string => {
+): number => {
   const paidInvoices = invoices.filter((inv) => inv.status === condition);
-  return amountFormat(
-    paidInvoices.reduce((accu, curr) => (accu += curr.amount), 0)
-  );
+  return paidInvoices.reduce((accu, curr) => (accu += curr.amount), 0);
 };
